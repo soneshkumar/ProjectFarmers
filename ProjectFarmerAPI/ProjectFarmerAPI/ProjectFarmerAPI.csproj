@@ -94,11 +94,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\FarmersController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
+    <Compile Include="DataAccess\CustomerDataAccess.cs" />
+    <Compile Include="DataAccess\DBDataAccess.cs" />
+    <Compile Include="DataAccess\FarmerDataAccess.cs" />
+    <Compile Include="DataAccess\ItemDataAccess.cs" />
+    <Compile Include="DataAccess\OrderDataAccess.cs" />
+    <Compile Include="DataAccess\RatingDataAccess.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
