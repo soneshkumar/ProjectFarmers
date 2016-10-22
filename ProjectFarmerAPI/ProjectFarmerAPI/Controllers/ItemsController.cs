@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ProjectFarmerAPI.Models;
+using ProjectFarmerAPI.DataAccess;
 
 namespace ProjectFarmerAPI.Controllers
 {
@@ -20,14 +21,15 @@ namespace ProjectFarmerAPI.Controllers
 
         // GET: api/Items
         [Route("")]
-        public IQueryable<Item> GetItems()
+        public IEnumerable<Item> GetItems()
         {
+            // #TODO: If the authentication is succeeded, else throw an error as auth failure
             return db.Items;
         }
 
         // GET: api/sellableItems
-        [Route("~api/sellableItems")]
-        public IQueryable<Item> GetSellableItems()
+        [Route("~api/items/sellable")]
+        public IEnumerable<Item> GetSellableItems()
         {
             return db.Items;
         }

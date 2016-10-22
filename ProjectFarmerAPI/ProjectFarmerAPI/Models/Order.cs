@@ -17,7 +17,7 @@ namespace ProjectFarmerAPI.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// The Customer Id
+        /// The Customer Id, Our System will be a special kind of Customer.
         /// </summary>
         [Required]
         public int CustomerId { get; set; }
@@ -45,9 +45,21 @@ namespace ProjectFarmerAPI.Models
         public DateTime DeliveryDate { get; set; }
 
         /// <summary>
+        /// Order Creation Date
+        /// </summary>
+        [Required]
+        public DateTime OrderDate { get; set; }
+
+        /// <summary>
         /// The time slot will be used for delivery
         /// </summary>
         public TimeSpan Duration { get; set; }
+
+        /// <summary>
+        /// Order Type, Farmers order are also a special kind of order
+        /// </summary>
+        [Required]
+        public OrderType OrderType { get; set; }
 
         /// <summary>
         /// The Status of the Order

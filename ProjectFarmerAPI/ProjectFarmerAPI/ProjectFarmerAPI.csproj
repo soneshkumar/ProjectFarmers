@@ -112,11 +112,13 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerType.cs" />
+    <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Farmer.cs" />
     <Compile Include="Models\ItemCategory.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemType.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderType.cs" />
     <Compile Include="Models\Priority.cs" />
     <Compile Include="Models\ProjectFarmerAPIContext.cs" />
     <Compile Include="Models\Rating.cs" />

@@ -17,6 +17,11 @@ namespace ProjectFarmerAPI.Models
         public int ID { get; set; }
 
         /// <summary>
+        /// The Address Custom Label, It is not required.
+        /// </summary>
+        public string CustomLabel { get; set; }
+
+        /// <summary>
         /// Address Line 1 Ex : Apt. 2000 apt Name
         /// </summary>
         [Required]
