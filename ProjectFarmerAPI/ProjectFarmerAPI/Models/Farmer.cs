@@ -15,7 +15,7 @@ namespace ProjectFarmerAPI.Models
         /// The Date Of Birth of the Farmer
         /// </summary>
         [Required]
-        public DateTime DOB { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
 
         /// <summary>

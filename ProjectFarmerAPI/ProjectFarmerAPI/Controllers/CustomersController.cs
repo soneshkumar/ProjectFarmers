@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ProjectFarmerAPI.Models;
+using ProjectFarmerAPI.HelperMethods;
+using ProjectFarmerAPI.DataAccess;
 
 namespace ProjectFarmerAPI.Controllers
 {
@@ -17,6 +19,7 @@ namespace ProjectFarmerAPI.Controllers
     public class CustomersController : ApiController
     {
         private ProjectFarmerAPIContext db = new ProjectFarmerAPIContext();
+        private OrderDataAccess orderAccess = new OrderDataAccess();
 
         // GET: api/Customers
         [Route("")]
@@ -37,6 +40,29 @@ namespace ProjectFarmerAPI.Controllers
             }
 
             return Ok(customer);
+        }
+
+        [Route("{id:int}/orders")]
+        public IEnumerable<Order> GetOrderByCustomerId(int id)
+        {
+            if (id < 0)
+            {
+                throw new ArgumentOutOfRangeException("Customer ID should be positive integer");
+            }
+            return FindOrdersByCustomer(id);
+        }
+
+
+        /// <summary>
+        /// Followup method for returning orders of a customer
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
+        private IEnumerable<Order> FindOrdersByCustomer(int customerId)
+        {
+            var orders = orderAccess.GetOrderByCustomer(customerId);
+            Validation.validateOrders(orders);
+            return orders;
         }
 
 

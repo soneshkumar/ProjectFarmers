@@ -19,7 +19,7 @@ namespace ProjectFarmerAPI.Models
         /// <summary>
         /// The Date of birth of the Customer if Indivisual Otherwise Company Date.
         /// </summary>
-        public DateTime DOB { get; set; }
+        public DateTime Date { get; set; }
 
     }
 }

@@ -7,5 +7,14 @@ namespace ProjectFarmerAPI.DataAccess
 {
     public class FarmerDataAccess
     {
+        private DBDataAccess access;
+
+        public FarmerDataAccess()
+        {
+            access = new DBDataAccess();
+        }
+
+
+
     }
 }

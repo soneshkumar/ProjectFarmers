@@ -7,8 +7,9 @@ namespace ProjectFarmerAPI.Tests
     public class ItemsController
     {
         [TestMethod]
-        public void TestMethod1()
+        public void GetSellableInventories()
         {
+
         }
     }
 }

@@ -17,21 +17,55 @@ namespace ProjectFarmerAPI.Controllers
     [RoutePrefix("api/items")]
     public class ItemsController : ApiController
     {
-        private ProjectFarmerAPIContext db = new ProjectFarmerAPIContext();
+        private ItemDataAccess access = new ItemDataAccess();
 
         // GET: api/Items
         [Route("")]
         public IEnumerable<Item> GetItems()
         {
-            // #TODO: If the authentication is succeeded, else throw an error as auth failure
-            return db.Items;
+            throw new NotImplementedException("We are sorry, But you can't complete this call, please refer to the API Manual");
         }
 
-        // GET: api/sellableItems
-        [Route("~api/items/sellable")]
-        public IEnumerable<Item> GetSellableItems()
+        // GET: api/items/sellable
+        [Route("sellable")]
+        public IEnumerable<Item> GetSellableItems(int requestedBy)
         {
-            return db.Items;
+            if(requestedBy <= 0)
+            {
+                throw new ArgumentOutOfRangeException("requestedBy should be the user_id");
+            }
+            return GetSellableInventories(requestedBy);
+        }
+
+        /// <summary>
+        /// Followup method
+        /// </summary>
+        /// <param name="requestedBy"></param>
+        /// <returns></returns>
+        private IEnumerable<Item> GetSellableInventories(int requestedBy)
+        {
+            var inventories = access.GetSellableInventories(requestedBy);
+            ValidateInventoryObject(inventories);
+            return inventories;
+        }
+
+        /// <summary>
+        /// Validate that inventory object to make ure it does not have wrong categorization.
+        /// </summary>
+        /// <param name="sellableItems"></param>
+        private void ValidateInventoryObject(IEnumerable<Item> sellableItems)
+        {
+            if (sellableItems != null)
+            {
+                foreach (var item in sellableItems)
+                {
+                    if (item.Category == ItemCategory.None || item.QuantityBy == ItemQuantityBy.None || item.Rate <= 0 || string.IsNullOrWhiteSpace(item.ResourceUrl))
+                    {
+                        throw new InvalidOperationException("The Inventories data is not valid");
+                    }
+                }
+            }
+
         }
 
         // GET: api/Items/5
@@ -39,13 +73,14 @@ namespace ProjectFarmerAPI.Controllers
         [ResponseType(typeof(Item))]
         public async Task<IHttpActionResult> GetItem(int id)
         {
-            Item item = await db.Items.FindAsync(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
+            //Item item = await db.Items.FindAsync(id);
+            //if (item == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return Ok(item);
+            //return Ok(item);
+            return null;
         }
 
         // PUT: api/Items/5
@@ -53,35 +88,36 @@ namespace ProjectFarmerAPI.Controllers
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutItem(int id, Item item)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
-            if (id != item.Id)
-            {
-                return BadRequest();
-            }
+            //if (id != item.Id)
+            //{
+            //    return BadRequest();
+            //}
 
-            db.Entry(item).State = EntityState.Modified;
+            //db.Entry(item).State = EntityState.Modified;
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //try
+            //{
+            //    await db.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!ItemExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
-            return StatusCode(HttpStatusCode.NoContent);
+            //return StatusCode(HttpStatusCode.NoContent);
+            return null;
         }
 
         // POST: api/Items
@@ -89,15 +125,16 @@ namespace ProjectFarmerAPI.Controllers
         [ResponseType(typeof(Item))]
         public async Task<IHttpActionResult> PostItem(Item item)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
-            db.Items.Add(item);
-            await db.SaveChangesAsync();
+            //db.Items.Add(item);
+            //await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = item.Id }, item);
+            //return CreatedAtRoute("DefaultApi", new { id = item.Id }, item);
+            return null;
         }
 
         // DELETE: api/Items/5
@@ -105,30 +142,32 @@ namespace ProjectFarmerAPI.Controllers
         [ResponseType(typeof(Item))]
         public async Task<IHttpActionResult> DeleteItem(int id)
         {
-            Item item = await db.Items.FindAsync(id);
-            if (item == null)
-            {
-                return NotFound();
-            }
+            //Item item = await db.Items.FindAsync(id);
+            //if (item == null)
+            //{
+            //    return NotFound();
+            //}
 
-            db.Items.Remove(item);
-            await db.SaveChangesAsync();
+            //db.Items.Remove(item);
+            //await db.SaveChangesAsync();
 
-            return Ok(item);
+            //return Ok(item);
+            return null;
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                access.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool ItemExists(int id)
         {
-            return db.Items.Count(e => e.Id == id) > 0;
+            //return db.Items.Count(e => e.Id == id) > 0;
+            return true;
         }
     }
 }

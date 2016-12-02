@@ -29,7 +29,7 @@ namespace ProjectFarmerAPI.DataAccess
         /// <param name="sprocName"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public DataSet ExecuteStoredProcedure(string sprocName, SqlParameterCollection parameters)
+        public DataSet ExecuteStoredProcedure(string sprocName, SqlParameter[] parameters)
         {
             DataSet ds = new DataSet();
             using (var conn = new SqlConnection(this.connectionString))
@@ -39,9 +39,12 @@ namespace ProjectFarmerAPI.DataAccess
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = conn;
                 cmd.CommandText = sprocName;
-                foreach(var parameter in parameters)
+                if(parameters != null)
                 {
-                    cmd.Parameters.Add(parameter);
+                    foreach (var parameter in parameters)
+                    {
+                        cmd.Parameters.Add(parameter);
+                    }
                 }
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(ds);

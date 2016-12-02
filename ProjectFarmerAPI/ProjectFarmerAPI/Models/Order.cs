@@ -39,16 +39,16 @@ namespace ProjectFarmerAPI.Models
         public Priority Priority { get; set; }
 
         /// <summary>
-        /// Delivery Date of the Order,
-        /// </summary>
-        [Required]
-        public DateTime DeliveryDate { get; set; }
-
-        /// <summary>
         /// Order Creation Date
         /// </summary>
         [Required]
         public DateTime OrderDate { get; set; }
+
+        /// <summary>
+        /// Delivery Date of the Order,
+        /// </summary>
+        [Required]
+        public DateTime DeliveryDate { get; set; }
 
         /// <summary>
         /// The time slot will be used for delivery
@@ -64,7 +64,7 @@ namespace ProjectFarmerAPI.Models
         /// <summary>
         /// The Status of the Order
         /// </summary>
-        public Status OrderStatus { get; set; }
+        public OrderStatus OrderStatus { get; set; }
 
         /// <summary>
         /// The list of items which are being ordered.
@@ -75,6 +75,11 @@ namespace ProjectFarmerAPI.Models
         /// <summary>
         /// The Total Cost of the Order
         /// </summary>
-        public double TotalCost { get; set; }
+        public decimal TotalCost { get; set; }
+
+        /// <summary>
+        /// Is defined only when CustomerId is zero
+        /// </summary>
+        public int AssociatedFarmerId { get; set; }
     }
 }

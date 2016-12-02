@@ -5,19 +5,19 @@ using System.Web;
 
 namespace ProjectFarmerAPI.Models
 {
-    public enum ItemCategory
+    public enum ItemQuantityBy
     {
         /// <summary>
-        /// None is for invalid/wrong entry cases
+        /// Invalid/wrong entry cases
         /// </summary>
         None = -1,
         /// <summary>
-        /// We will be selling only Vegetables as of now
+        /// Weight type of item
         /// </summary>
-        Vegetable = 1,
+        ByWeight = 1,
         /// <summary>
-        /// The Fruits
+        /// Counting type of items
         /// </summary>
-        Fruits = 2
+        ByNumber = 2
     }
 }

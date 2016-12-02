@@ -10,7 +10,13 @@ namespace ProjectFarmerAPI.Models
     /// </summary>
     public enum CustomerType
     {
+        /// <summary>
+        /// Indivisual customers
+        /// </summary>
         Indivisual = 1,
+        /// <summary>
+        /// The Enterprise customers, small or big
+        /// </summary>
         Enterprise = 2
     }
 }
