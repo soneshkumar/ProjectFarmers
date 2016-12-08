@@ -35,10 +35,10 @@ namespace ProjectFarmerAPI.Models
         public ItemCategory Category { get; set; }
 
         /// <summary>
-        /// The type of the item weather the item is priced with the weight or by quantity.
+        /// The type of the item weather the item is priced with the weight or by number.
         /// </summary>
         [Required]
-        public ItemQuantityBy QuantityBy { get; set; }
+        public ItemSellBy SellBy { get; set; }
 
         /// <summary>
         /// The quantity of the item available in the store

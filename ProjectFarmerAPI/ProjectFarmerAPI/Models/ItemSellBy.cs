@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectFarmerAPI.Models
 {
-    public enum ItemQuantityBy
+    public enum ItemSellBy
     {
         /// <summary>
         /// Invalid/wrong entry cases
@@ -14,10 +14,10 @@ namespace ProjectFarmerAPI.Models
         /// <summary>
         /// Weight type of item
         /// </summary>
-        ByWeight = 1,
+        Weight = 1,
         /// <summary>
         /// Counting type of items
         /// </summary>
-        ByNumber = 2
+        Number = 2
     }
 }

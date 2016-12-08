@@ -27,12 +27,12 @@ namespace ProjectFarmerAPI.Controllers
         }
 
         // GET: api/items/sellable
-        [Route("sellable")]
+        [Route("sellable/{requestedBy:int}")]
         public IEnumerable<Item> GetSellableItems(int requestedBy)
         {
-            if(requestedBy <= 0)
+            if(requestedBy < 0)
             {
-                throw new ArgumentOutOfRangeException("requestedBy should be the user_id");
+                throw new ArgumentOutOfRangeException("requestedBy should be either 0 or 1");
             }
             return GetSellableInventories(requestedBy);
         }
@@ -59,7 +59,7 @@ namespace ProjectFarmerAPI.Controllers
             {
                 foreach (var item in sellableItems)
                 {
-                    if (item.Category == ItemCategory.None || item.QuantityBy == ItemQuantityBy.None || item.Rate <= 0 || string.IsNullOrWhiteSpace(item.ResourceUrl))
+                    if (item.Category == ItemCategory.None || item.SellBy == ItemSellBy.None || item.Rate <= 0 || string.IsNullOrWhiteSpace(item.ResourceUrl))
                     {
                         throw new InvalidOperationException("The Inventories data is not valid");
                     }
