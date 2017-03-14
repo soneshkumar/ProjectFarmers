@@ -1,1 +1,0 @@
-<h1>Procure directly from farmers</h1>
